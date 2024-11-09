@@ -9,25 +9,22 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\D1">
-      <UniqueIdentifier>{8195c742-d58b-425f-b02b-1a1a1ae6c75c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\D2">
-      <UniqueIdentifier>{ee985f00-73a6-45c7-ba70-6dbb8b796388}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FINANCE.cpp">
-      <Filter>Source Files\D2</Filter>
+    <ClCompile Include="MoveGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Minimax.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Board.cpp">
-      <Filter>Source Files\D1</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveGenerator.cpp">
+    <ClCompile Include="CHESS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +41,7 @@
     <ClInclude Include="Position.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="minimax.hpp">
+    <ClInclude Include="Minimax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

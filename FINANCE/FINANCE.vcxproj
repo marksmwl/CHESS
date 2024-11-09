@@ -130,13 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
-    <ClCompile Include="FINANCE.cpp" />
+    <ClCompile Include="CHESS.cpp" />
+    <ClCompile Include="Minimax.cpp" />
     <ClCompile Include="MoveGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.hpp" />
     <ClInclude Include="Eval.hpp" />
-    <ClInclude Include="minimax.hpp" />
+    <ClInclude Include="Minimax.hpp" />
     <ClInclude Include="MoveGenerator.hpp" />
     <ClInclude Include="Position.hpp" />
   </ItemGroup>
