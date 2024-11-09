@@ -1,16 +1,41 @@
-#ifndef MOVE_GENERATOR_H
-#define MOVE_GENERATOR_H
+#ifndef MOVEGENERATOR_H_INCLUDED
+#define MOVEGENERATOR_H_INCLUDED
 
+#include <vector>
 #include "Board.hpp"
+
+struct Move {
+	uint64_t fromSquare; // Used to erase old position
+	uint64_t toSquare; // Used to mark new position
+	ChessPiece movedPiece;
+	ChessPiece capturedPiece;
+};
 
 class MoveGenerator {
 public:
-	Board generatePawnMoves();
-	Board generateKnightMoves();
-	Board generateBishopMoves();
-	Board generateRookMoves();
-	Board generateKingMoves();
-	Board generateQueenMoves();
+    // Constructor
+    MoveGenerator(Board& board);
+
+    // Main function to generate all legal moves for a given color
+    std::vector<Move> generateAllMoves(Color color);
+
+    // Functions to generate moves for each piece type
+    std::vector<Move> generatePawnMoves(Color color);
+    std::vector<Move> generateKnightMoves(Color color);
+    std::vector<Move> generateBishopMoves(Color color);
+    std::vector<Move> generateRookMoves(Color color);
+    std::vector<Move> generateQueenMoves(Color color);
+    std::vector<Move> generateKingMoves(Color color);
+
+private:
+    Board& board; // Reference to the board to access its bitboards and state
+
+    // Helper functions for move generation
+    uint64_t getPawnAttacks(Color color, uint64_t pawns);
+    uint64_t getSlidingMoves(uint64_t position, uint64_t occupied, const std::vector<int>& directions);
+
+    // Utility function to convert bitboard moves to Move structs
+    std::vector<Move> bitboardToMoves(uint64_t fromSquare, uint64_t bitboard, ChessPiece movedPiece);
 };
 
 #endif
