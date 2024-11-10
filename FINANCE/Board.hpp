@@ -26,6 +26,14 @@ enum Color {
 	NONE
 };
 
+struct Move {
+	uint64_t fromSquare; // Used to erase old position
+	uint64_t toSquare; // Used to mark new position
+	ChessPiece movedPiece;
+	ChessPiece capturedPiece;
+};
+
+
 class Board {
 public:
 	Board();

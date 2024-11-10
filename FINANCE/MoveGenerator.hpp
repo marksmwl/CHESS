@@ -4,13 +4,6 @@
 #include <vector>
 #include "Board.hpp"
 
-struct Move {
-	uint64_t fromSquare; // Used to erase old position
-	uint64_t toSquare; // Used to mark new position
-	ChessPiece movedPiece;
-	ChessPiece capturedPiece;
-};
-
 class MoveGenerator {
 public:
     // Constructor
@@ -34,7 +27,7 @@ private:
     uint64_t getPawnAttacks(Color color, uint64_t pawns);
     uint64_t getSlidingMoves(uint64_t position, uint64_t occupied, const std::vector<int>& directions);
 
-    // Utility function to convert bitboard moves to Move structs
+    // Utility function to convert the generated bitboard moves to Move structs
     std::vector<Move> bitboardToMoves(uint64_t fromSquare, uint64_t bitboard, ChessPiece movedPiece);
 };
 

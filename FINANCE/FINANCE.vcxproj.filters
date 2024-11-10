@@ -38,9 +38,6 @@
     <ClInclude Include="Eval.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Position.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Minimax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

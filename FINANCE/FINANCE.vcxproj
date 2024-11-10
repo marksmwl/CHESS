@@ -139,7 +139,6 @@
     <ClInclude Include="Eval.hpp" />
     <ClInclude Include="Minimax.hpp" />
     <ClInclude Include="MoveGenerator.hpp" />
-    <ClInclude Include="Position.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

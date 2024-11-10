@@ -2,6 +2,7 @@
 //
 
 #include "Board.hpp"
+#include "MoveGenerator.hpp"
 #include <vector>
 #include<iostream>
 
@@ -12,5 +13,11 @@ int main()
    board.initializeBoard();
    uint64_t my_board = board.getBitboard(WHITE_BISHOP);
    
-   board.printBoard(board.FILE_MASKS[7]);
+   MoveGenerator moveGen(board);
+   moveGen.generatePawnMoves(BLACK);
+   moveGen.generatePawnMoves(WHITE);
+
+   board.printBoard(board.getBitboard(WHITE_PAWN));
+   board.printBoard(board.getBitboard(BLACK_PAWN));
+
 }
