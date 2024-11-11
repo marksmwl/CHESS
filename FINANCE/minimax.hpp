@@ -1,12 +1,13 @@
 #ifndef MINIMAX_H_INCLUDED
 #define MINIMAX_H_INCLUDED
 
+#include "Board.hpp"
+
 class minimax {
 public:
 	minimax();
 
-	void run();
-
+	Move run(Board board, int depth);
 
 };
 

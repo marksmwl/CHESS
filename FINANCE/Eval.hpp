@@ -8,8 +8,8 @@ public:
 	Eval();
 
 	int evaluateBoard(const Board& board);
-
-private:
+	                                           
+private:                
 
 };
 

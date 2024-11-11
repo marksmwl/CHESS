@@ -6,6 +6,10 @@ Board::Board() {
 }
 
 void Board::initializeBoard() {
+	for (int i = 0; i < 64; i++) {
+		pieceList[i] = EMPTY;
+	}
+
 	// Initialize white pieces
 	this->whitePawn = 0x000000000000FF00ULL; // White pawns on rank 2
 	this->whiteKnight = 0x0000000000000042ULL; // White knights on b1 and g1
@@ -13,6 +17,14 @@ void Board::initializeBoard() {
 	this->whiteRook = 0x0000000000000081ULL; // White rooks on a1 and h1
 	this->whiteQueen = 0x0000000000000008ULL; // White queen on d1
 	this->whiteKing = 0x0000000000000010ULL; // White king on e1
+
+	pieceList[0] = WHITE_ROOK;   pieceList[1] = WHITE_KNIGHT;
+	pieceList[2] = WHITE_BISHOP; pieceList[3] = WHITE_QUEEN;
+	pieceList[4] = WHITE_KING;   pieceList[5] = WHITE_BISHOP;
+	pieceList[6] = WHITE_KNIGHT; pieceList[7] = WHITE_ROOK;
+	for (int i = 8; i < 16; ++i) {
+		pieceList[i] = WHITE_PAWN;
+	}
 
 	// Initialize black pieces
 	this->blackPawn = 0x00FF000000000000ULL; // Black pawns on rank 7
@@ -22,10 +34,36 @@ void Board::initializeBoard() {
 	this->blackQueen = 0x0800000000000000ULL; // Black queen on d8
 	this->blackKing = 0x1000000000000000ULL; // Black king on e8
 
+	pieceList[56] = BLACK_ROOK;   pieceList[57] = BLACK_KNIGHT;
+	pieceList[58] = BLACK_BISHOP; pieceList[59] = BLACK_QUEEN;
+	pieceList[60] = BLACK_KING;   pieceList[61] = BLACK_BISHOP;
+	pieceList[62] = BLACK_KNIGHT; pieceList[63] = BLACK_ROOK;
+	for (int i = 48; i < 56; ++i) {
+		pieceList[i] = BLACK_PAWN;
+	}
+
 	this->whitePieces = whiteBishop | whiteKing | whiteKnight | whitePawn | whiteQueen | whiteRook;
 	this->blackPieces = blackBishop | blackKing | blackKnight | blackPawn | blackQueen | blackRook;
 
 	this->empty = 0x0000000000000000ULL;
+}
+
+// TODO
+void Board::makeMove(Move move) {
+
+}
+
+ChessPiece Board::getPieceAt(uint64_t bitboard) {
+	// Ensure the bitboard has only one bit set
+	if ((bitboard & (bitboard - 1)) != 0) {
+		throw std::invalid_argument("Bitboard must have exactly one bit set.");
+	}
+
+	// Find the index of the set bit (0 to 63)
+	int squareIndex = std::_Countr_zero(bitboard);
+
+	// Return the piece at that index in the pieceArray
+	return pieceList[squareIndex];
 }
 
 void Board::printBoard(uint64_t board) {
@@ -66,6 +104,7 @@ bool Board::updateBoard(ChessPiece piece, uint64_t newBoard) {
 
 		default: return false; // Invalid piece
 	}
+	return true;
 }
 
 uint64_t Board::getWhitePieces() {

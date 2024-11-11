@@ -17,7 +17,8 @@ enum ChessPiece {
 	BLACK_BISHOP,
 	BLACK_ROOK,
 	BLACK_QUEEN,
-	BLACK_KING
+	BLACK_KING,
+	EMPTY
 };
 
 enum Color {
@@ -46,6 +47,8 @@ public:
 	uint64_t getOccupied();
 	uint64_t getUnoccupied();
 	uint64_t getEmpty();
+	void makeMove(Move);
+	ChessPiece getPieceAt(uint64_t bitboard);
 	bool updateBoard(ChessPiece piece, uint64_t newBoard);
 
 	const uint64_t FILE_MASKS[8] = {
@@ -70,6 +73,17 @@ public:
 		0xFF00000000000000ULL  // RANK_8
 	};
 
+	const uint64_t KNIGHT_MASKS[8] = {
+		(FILE_MASKS[0] | FILE_MASKS[1] | RANK_MASKS[0]), // LeftDown
+		(FILE_MASKS[0] | FILE_MASKS[1] | RANK_MASKS[7]), // LeftUp, +6
+		(RANK_MASKS[7] | RANK_MASKS[6] | FILE_MASKS[0]), // UpLeft, +15
+		(RANK_MASKS[7] | RANK_MASKS[6] | FILE_MASKS[7]), // UpRight, +17
+		(FILE_MASKS[7] | FILE_MASKS[6] | RANK_MASKS[7]), // RightUp, +10
+		(FILE_MASKS[7] | FILE_MASKS[6] | RANK_MASKS[0]), // RightDown
+		(RANK_MASKS[0] | RANK_MASKS[1] | FILE_MASKS[7]), // DownRight
+		(RANK_MASKS[0] | RANK_MASKS[1] | FILE_MASKS[0])  // DownLeft
+	};
+
 
 private:
 	uint64_t whitePawn;
@@ -92,8 +106,8 @@ private:
 	uint64_t whitePieces;
 	bool whitePiecesDirty = false;
 	bool blackPiecesDirty = false;
+	ChessPiece pieceList[64];
 
 };
-
 
 #endif
