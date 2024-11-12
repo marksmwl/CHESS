@@ -104,17 +104,20 @@ std::vector<Move> MoveGenerator::generateKnightMoves(Color color) {
     uint64_t knightBoard;
     uint64_t opponentBoard;
     uint64_t currPosition;
+    uint64_t toPosition;
+    ChessPiece piece = (color == BLACK) ? BLACK_KNIGHT : WHITE_KNIGHT;
+
     std::vector<Move> moves;
     const int knightOffsets[8] = {
-        17,15,10,6,-17,-15,-10,-6
-    }; // 
+        -10, 6, 15, 17, 10, -6, -15, -17
+    };
 
     if (color == NONE) {
         exit(EXIT_FAILURE);
     }
  
     knightBoard = (color == BLACK) ? board.getBitboard(BLACK_KNIGHT) : board.getBitboard(WHITE_KNIGHT);
-    opponentBoard = (color == WHITE) ? board.getBlackPieces() : board.getBlackPieces();
+    opponentBoard = (color == WHITE) ? board.getBlackPieces() : board.getWhitePieces();
 
         
     while (knightBoard) {
@@ -122,11 +125,19 @@ std::vector<Move> MoveGenerator::generateKnightMoves(Color color) {
         currPosition = 1ULL << from;
 
         for (int i = 0; i < 8; i++) {
-            if (currPosition & board.KNIGHT_MASKS[i]) { // may be considered for a 
+            if (currPosition & board.KNIGHT_MASKS[i]) { // it cannot perform the offset
                 continue;
             }
 
+            if (knightOffsets[i] < 0) {
+                toPosition = currPosition >> -knightOffsets[i];
+            } else { toPosition = currPosition << knightOffsets[i]; }
+            
+            if (toPosition & board.getWhitePieces()) { // There is a piece of the same color in the way.
+                continue;
+            }
 
+            moves.push_back({ currPosition, toPosition, piece, board.getPieceAt(toPosition) });
         }
         
 

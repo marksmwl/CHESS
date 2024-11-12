@@ -46,7 +46,7 @@ int main()
    //moveGen.generatePawnMoves(WHITE);
 
    board.printBoard(0x40000ULL);
-   board.printBoard(0x40000ULL >> 6);
+   board.printBoard(0x40000ULL >> 10);
 
 }
 

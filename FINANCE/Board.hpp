@@ -74,14 +74,14 @@ public:
 	};
 
 	const uint64_t KNIGHT_MASKS[8] = {
-		(FILE_MASKS[0] | FILE_MASKS[1] | RANK_MASKS[0]), // LeftDown
+		(FILE_MASKS[0] | FILE_MASKS[1] | RANK_MASKS[0]), // LeftDown -10
 		(FILE_MASKS[0] | FILE_MASKS[1] | RANK_MASKS[7]), // LeftUp, +6
 		(RANK_MASKS[7] | RANK_MASKS[6] | FILE_MASKS[0]), // UpLeft, +15
 		(RANK_MASKS[7] | RANK_MASKS[6] | FILE_MASKS[7]), // UpRight, +17
 		(FILE_MASKS[7] | FILE_MASKS[6] | RANK_MASKS[7]), // RightUp, +10
-		(FILE_MASKS[7] | FILE_MASKS[6] | RANK_MASKS[0]), // RightDown
-		(RANK_MASKS[0] | RANK_MASKS[1] | FILE_MASKS[7]), // DownRight
-		(RANK_MASKS[0] | RANK_MASKS[1] | FILE_MASKS[0])  // DownLeft
+		(FILE_MASKS[7] | FILE_MASKS[6] | RANK_MASKS[0]), // RightDown -6
+		(RANK_MASKS[0] | RANK_MASKS[1] | FILE_MASKS[7]), // DownRight -15
+		(RANK_MASKS[0] | RANK_MASKS[1] | FILE_MASKS[0])  // DownLeft -17
 	};
 
 
