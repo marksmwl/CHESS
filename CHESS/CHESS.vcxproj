@@ -22,7 +22,7 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{ea329465-5c99-4785-b5e8-aa850a5af3c7}</ProjectGuid>
-    <RootNamespace>FINANCE</RootNamespace>
+    <RootNamespace>CHESS</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>CHESS</ProjectName>
   </PropertyGroup>
