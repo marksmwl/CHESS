@@ -100,6 +100,7 @@ std::vector<Move> MoveGenerator::generatePawnMoves(Color color) {
     return moves;
 }
 
+// Method for generating knight moves
 std::vector<Move> MoveGenerator::generateKnightMoves(Color color) {
     uint64_t knightBoard;
     uint64_t opponentBoard;
@@ -115,14 +116,15 @@ std::vector<Move> MoveGenerator::generateKnightMoves(Color color) {
     if (color == NONE) {
         exit(EXIT_FAILURE);
     }
- 
+    
+    // Set the knight board according to color, and do the same for the opponent's board. 
     knightBoard = (color == BLACK) ? board.getBitboard(BLACK_KNIGHT) : board.getBitboard(WHITE_KNIGHT);
     opponentBoard = (color == WHITE) ? board.getBlackPieces() : board.getWhitePieces();
 
         
     while (knightBoard) {
-        int from = std::_Countr_zero(knightBoard);
-        currPosition = 1ULL << from;
+        int from = std::_Countr_zero(knightBoard); // Get the least bit
+        currPosition = 1ULL << from; // Create the board representing the curr knight position. 
 
         for (int i = 0; i < 8; i++) {
             if (currPosition & board.KNIGHT_MASKS[i]) { // it cannot perform the offset
@@ -137,20 +139,36 @@ std::vector<Move> MoveGenerator::generateKnightMoves(Color color) {
                 continue;
             }
 
-            moves.push_back({ currPosition, toPosition, piece, board.getPieceAt(toPosition) });
+            moves.push_back({ currPosition, toPosition, piece, board.getPieceAt(toPosition) }); // Add the move to the array
         }
         
 
-        knightBoard &= (knightBoard - 1);
+        knightBoard &= (knightBoard - 1); // Decrement the pieces
     }
 
     return moves;
 }
 
-//std::vector<Move> MoveGenerator::generateBishopMoves(Color color) {
-//
-//}
-//
+std::vector<Move> MoveGenerator::generateBishopMoves(Color color) {
+    uint64_t bishopBoard;
+    uint64_t opponentBoard;
+    uint64_t currPosition;
+    uint64_t toPosition;
+    ChessPiece piece = (color == BLACK) ? BLACK_BISHOP : WHITE_BISHOP;
+
+    std::vector<Move> moves;
+
+    // Set the bishop board according to color, and do the same for the opponent's board. 
+    bishopBoard = (color == BLACK) ? board.getBitboard(BLACK_BISHOP) : board.getBitboard(WHITE_BISHOP);
+    opponentBoard = (color == WHITE) ? board.getBlackPieces() : board.getWhitePieces();
+
+    while (bishopBoard) {
+
+    }
+
+    return moves;
+}
+
 //std::vector<Move> MoveGenerator::generateKingMoves(Color color) {
 //
 //}
